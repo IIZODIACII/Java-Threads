@@ -4,7 +4,7 @@ class Semaphore {
     public Semaphore(int num) { avail = num; }
     public synchronized void acquire() {
         avail-- ;
-        if (avail <= 0)
+        if (avail < 0)
         try {
             wait();
         }
