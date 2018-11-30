@@ -8,13 +8,13 @@ public class Semaphore {
  			S--;  //Lock the resource a.k.a (Pumbs)	
 		if(S<0){
 			try {
-				System.out.println("and waiting");
-				
+                System.out.println(x.getName()+" Is Waiting");				
                 x.wait(500);				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
  		 }
+		x.current_pumb=S+1;
  		
  		}
  		
