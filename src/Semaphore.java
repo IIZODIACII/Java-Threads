@@ -3,10 +3,10 @@ package a;
 public class Semaphore {
 	public int S=0;
  	public  synchronized void Wait(OS_Thread x){
- 		
+ 		this.S--;  //Lock the resource a.k.a (Pumb)
+		boolean f_time=true;
  		synchronized (x) {
- 			this.S--;  //Lock the resource a.k.a (Pumb)
- 			boolean f_time=true;
+ 		
 		while(this.S<0){
 			try {
                 if(f_time){System.out.println(x.getName()+" Is Waiting");f_time=false;}				
@@ -21,8 +21,5 @@ public class Semaphore {
  		
  		}
 
- 	public synchronized void Signal(){
- 			this.S++;    // Release the resource
- 	
- 	}	
+ 		
 }
