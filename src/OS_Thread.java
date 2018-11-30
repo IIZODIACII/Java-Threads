@@ -3,26 +3,19 @@ package a;
 import java.util.Random;
 
 public class OS_Thread extends Thread {
-private Semaphore x;
+static Semaphore x=new Semaphore();
 int current_pumb=0;
-int Pumbs=0;
-public void set_Pumbs(int Pumbs){this.Pumbs=Pumbs;}
 public synchronized void occ(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Occupied");}
 public synchronized void pay(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Paying");}
 public synchronized void lea(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Leave");}
 public synchronized void sev(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Being Served");}
-
 public void run(){
-	x=new Semaphore();
-	x.S=this.Pumbs;
+	
 	Random rand = new Random(); 
  		int value = rand.nextInt(500-201)+201; 	
  	synchronized (this) {
  		System.out.println(this.getName()+" "+"Arrived");		
  		x.Wait(this);
-	} 
-
- 	synchronized (this) {
  		occ();	
 	try {
 		this.wait(value); 	
@@ -30,37 +23,39 @@ public void run(){
 	catch (InterruptedException e) {
 		e.printStackTrace();
 	}
- 	}
 	value = rand.nextInt(100)+1;
-
- 	synchronized (this) {
-        sev();	
-       try {
+	 sev();	
+     try {
 		this.wait(value); 	
 		} 
 	catch (InterruptedException e) {
 		e.printStackTrace();
 	}
- 	}
  	
- 	pay();
-	value = rand.nextInt(100)+1;
-	
- synchronized (this) {
-	 
+ 	
+     pay();
+ 	value = rand.nextInt(100)+1;
+ 	
 
 
- try {
+ 	 try {
 
-		this.wait(value);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
+ 			this.wait(value);
+ 		} catch (InterruptedException e) {
+ 			e.printStackTrace();
+ 		}
 
- x.Signal();
- lea();	
+     x.S++;
+ 	 lea();	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	} 
 
- } 
  
  
  	}
