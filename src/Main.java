@@ -8,10 +8,18 @@ public class test {
 	
 	public static void main(String[] args) {
 Scanner Input=new Scanner(System.in);
-OS_Thread s=new OS_Thread();
-OS_Thread s2=new OS_Thread();
-s.start();
-s2.start();
+int pumb=Input.nextInt(),num_clients=Input.nextInt();
+Vector<String>Names=new Vector<String>(); 	
+Input.nextLine();
+for(int i=0;i<num_clients;i++){
+	String n=Input.nextLine();
+
+	Names.addElement(n);
+}	
+Petrol_Station P=new Petrol_Station();
+P.Start(pumb, num_clients, Names);
+
+
 Input.close();		
 	}
 
@@ -19,3 +27,4 @@ Input.close();
 	
 	
 }
+
