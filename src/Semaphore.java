@@ -8,8 +8,7 @@ public class Semaphore {
 			try {
 				System.out.println("and waiting");
 				
-				OS_Thread.sleep(500);
-				
+                x.wait(500);				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
