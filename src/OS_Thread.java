@@ -3,15 +3,18 @@ package a;
 import java.util.Random;
 
 public class OS_Thread extends Thread {
-Semaphore x=new Semaphore();
+private Semaphore x;
 int current_pumb=0;
-
+int Pumbs=0;
+public void set_Pumbs(int Pumbs){this.Pumbs=Pumbs;}
 public synchronized void occ(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Occupied");}
 public synchronized void pay(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Paying");}
 public synchronized void lea(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Leave");}
 public synchronized void sev(){System.out.println("Pumb "+current_pumb+":"+this.getName()+" Being Served");}
 
 public void run(){
+	x=new Semaphore();
+	x.S=this.Pumbs;
 	Random rand = new Random(); 
  		int value = rand.nextInt(500-201)+201; 	
  	synchronized (this) {
@@ -29,8 +32,8 @@ public void run(){
 	}
  	}
 	value = rand.nextInt(100)+1;
-	
-synchronized (this) {
+
+ 	synchronized (this) {
         sev();	
        try {
 		this.wait(value); 	
@@ -39,7 +42,6 @@ synchronized (this) {
 		e.printStackTrace();
 	}
  	}
- 	
  	
  	pay();
 	value = rand.nextInt(100)+1;
@@ -56,10 +58,9 @@ synchronized (this) {
 	}
 
  x.Signal();
+ lea();	
 
  } 
-	 lea();	
- 
  
  
  	}
