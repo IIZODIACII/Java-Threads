@@ -6,7 +6,7 @@ public class Semaphore {
  		
  		synchronized (x) {
  			S--;  //Lock the resource a.k.a (Pumbs)	
-		if(S<=0){
+		if(S<0){
 			try {
 				System.out.println("and waiting");
 				
