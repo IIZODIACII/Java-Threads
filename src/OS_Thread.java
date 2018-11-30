@@ -28,6 +28,8 @@ public void run(){
 		e.printStackTrace();
 	}
  	}
+	value = rand.nextInt(100)+1;
+	
 synchronized (this) {
         sev();	
        try {
